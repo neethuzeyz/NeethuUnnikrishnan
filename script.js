@@ -90,3 +90,22 @@ window.addEventListener('load', typeWriter);
 
 document.getElementById('current-year').textContent = new Date().getFullYear();
 }
+window.onload = function() {
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const serviceID = 'service_2lle3oo'; 
+        const templateID = 'template_07ihwrf'; 
+
+        console.log('Sending email with Service ID:', serviceID, 'and Template ID:', templateID);
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                alert('Sent!');
+                console.log('Email sent successfully!');
+            }, (err) => {
+                alert('Failed to send email. Check the console for more details.');
+                console.error('Email failed to send:', err);
+            });
+    });
+}
